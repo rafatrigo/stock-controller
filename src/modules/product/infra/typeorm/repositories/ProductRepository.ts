@@ -19,6 +19,16 @@ class ProductRepository {
     return product;
   }
 
+  public async delete(id: string): Promise<void> {
+    const product = await this.ormRepository.findOne(id);
+
+    if (!product) {
+      throw new AppError('This product does not exist');
+    }
+
+    await this.ormRepository.delete(id);
+  }
+
   public async findById(id: string): Promise<Product | undefined> {
     const product = await this.ormRepository.findOne(id);
 
@@ -35,14 +45,16 @@ class ProductRepository {
     return product;
   }
 
-  public async delete(id: string): Promise<void> {
-    const product = await this.ormRepository.findOne(id);
+  public async list(): Promise<Product[]> {
+    const products = await this.ormRepository.find();
 
-    if (!product) {
-      throw new AppError('This product does not exist');
-    }
+    return products;
+  }
 
-    await this.ormRepository.delete(id);
+  public async update(data: Product): Promise<Product> {
+    const updatedProduct = await this.ormRepository.save(data);
+
+    return updatedProduct;
   }
 }
 

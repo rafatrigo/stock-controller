@@ -6,4 +6,6 @@ export default interface IProductRepository {
   findById(id: string): Promise<Product | undefined>;
   findByName(name: string): Promise<Product | undefined>;
   delete(id: string): Promise<void>;
+  list(): Promise<Product[]>;
+  update(data: Product): Promise<Product>;
 }
