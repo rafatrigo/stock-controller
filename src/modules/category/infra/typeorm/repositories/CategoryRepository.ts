@@ -39,6 +39,12 @@ class CategoryRepository {
 
     await this.ormRepository.delete(id);
   }
+
+  public async list(): Promise<Category[]> {
+    const categories = await this.ormRepository.find();
+
+    return categories;
+  }
 }
 
 export default CategoryRepository;
