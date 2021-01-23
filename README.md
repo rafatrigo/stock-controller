@@ -1,30 +1,44 @@
 # stock-controller
 A simple way to control things like maximum and minimum quantity of products in stock, purchase value and resale value of each product.
 
-🛠️ This project is still under development.
-
 ---
 
 
-## Main features
+&nbsp;
 
-- [x] 1. Register a new product
+🛠️ This project is still under development.
 
-  - ID
-  - Name
-  - Quantity
-  - Minimum quantity
-  - Purchase value
-  - Sale value
-  - Product category
 
-- [ ] 2. Edit a product
-  - All fields except id and category
 
-- [ ] 3. Delete a product
-- [ ] 4. Search for a product
-- [ ] 5. List products
-- [ ] 6. Warn when the quantity of a product is below the minimum quantity
-- [ ] 7. Search a category
-- [ ] 8. List categories
-- [ ] 9. List products of a specific category
+## Back-end
+
+
+### Products
+
+- [x] Register a new product
+- [x] Delete a product
+- [x] Edit a product
+- [x] List products
+- [x] Increment quantity
+- [x] Decrement quantity
+
+### Categories
+
+- [x] Create a categoty
+- [ ] List categories
+- [ ] Delete category
+
+### Users
+
+- [ ] Register a new user
+- [ ] Delete a user
+- [ ] Edit user
+- [ ] Authenticate user
+- [ ] Password recovery
+
+
+&nbsp;
+
+## Front-end
+
+I haven't thought about it yet, I'll finish the backend first 😅
