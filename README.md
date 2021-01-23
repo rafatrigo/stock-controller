@@ -8,7 +8,7 @@ A simple way to control things like maximum and minimum quantity of products in 
 
 ## Main features
 
-- [ ] 1. Register a new product
+- [x] 1. Register a new product
 
   - ID
   - Name
@@ -17,10 +17,10 @@ A simple way to control things like maximum and minimum quantity of products in 
   - Purchase value
   - Sale value
   - Product category
-  
+
 - [ ] 2. Edit a product
   - All fields except id and category
-  
+
 - [ ] 3. Delete a product
 - [ ] 4. Search for a product
 - [ ] 5. List products

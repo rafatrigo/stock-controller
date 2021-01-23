@@ -1,13 +1,9 @@
-import 'reflect-metadata';
-import 'dotenv/config';
-import '../../typeorm';
+import { Router } from 'express';
 
-import express from 'express';
-import cors from 'cors';
+import productsRouter from '@modules/product/infra/http/products.routes';
 
-const app = express();
+const routes = Router();
 
-app.use(cors());
-app.use(express.json());
+routes.use('/products', productsRouter);
 
-export default app;
+export default routes;

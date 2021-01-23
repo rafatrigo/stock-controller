@@ -11,5 +11,5 @@ module.exports = {
 	],
 	"cli": {
 		"migrationsDir": "./src/shared/infra/typeorm/migrations"
-	}
+  }
 }
