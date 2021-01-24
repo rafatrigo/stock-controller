@@ -1,7 +1,6 @@
 import CreateProductServer from '@modules/product/services/CreateProductService';
 import DecrementProductQuantityService from '@modules/product/services/DecrementProductQuantityService';
 import DeleteProductService from '@modules/product/services/DeleteProductService';
-import FindProductsInCategory from '@modules/product/services/FindProductsInCategoryService';
 import IncrementProductQuantityService from '@modules/product/services/IncrementProductQuantityService';
 import ListProductsServer from '@modules/product/services/ListProductsServer';
 import UpdateProductService from '@modules/product/services/UpdateProductService';

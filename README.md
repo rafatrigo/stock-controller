@@ -25,8 +25,8 @@ A simple way to control things like maximum and minimum quantity of products in 
 ### Categories
 
 - [x] Create a categoty
-- [ ] List categories
-- [ ] Delete category
+- [x] List categories
+- [x] Delete category
 
 ### Users
 
