@@ -16,7 +16,6 @@ export default class CreateTables1611342314212 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
-            isUnique: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
@@ -43,6 +42,10 @@ export default class CreateTables1611342314212 implements MigrationInterface {
             type: 'decimal',
             precision: 10,
             scale: 2,
+          },
+          {
+            name: 'user_id',
+            type: 'uuid',
           },
           {
             name: 'category_id',
@@ -72,6 +75,56 @@ export default class CreateTables1611342314212 implements MigrationInterface {
       }),
     );
 
+    await queryRunner.createTable(
+      new Table({
+        name: 'users',
+        columns: [
+          {
+            name: 'id',
+            type: 'uuid',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
+          },
+          {
+            name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
+            name: 'password',
+            type: 'varchar',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+        ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'products',
+      new TableForeignKey({
+        name: 'productUser',
+        columnNames: ['user_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
+
     await queryRunner.createForeignKey(
       'products',
       new TableForeignKey({
@@ -87,6 +140,8 @@ export default class CreateTables1611342314212 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('products', 'productCategory');
+    await queryRunner.dropForeignKey('products', 'productUser');
+    await queryRunner.dropTable('users');
     await queryRunner.dropTable('categories');
     await queryRunner.dropTable('products');
   }
