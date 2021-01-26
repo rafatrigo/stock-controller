@@ -1,6 +1,5 @@
 import ICreateProductDTO from '@modules/product/dtos/ICreateProductDTO';
 import { getRepository, Repository } from 'typeorm';
-import AppError from '@shared/errors/AppError';
 
 import Product from '../entities/Product';
 
@@ -11,8 +10,24 @@ class ProductRepository {
     this.ormRepository = getRepository(Product);
   }
 
-  public async create(productData: ICreateProductDTO): Promise<Product> {
-    const product = this.ormRepository.create(productData);
+  public async create({
+    name,
+    quantity,
+    minimumQuantity,
+    purchaseValue,
+    saleValue,
+    category,
+    user,
+  }: ICreateProductDTO): Promise<Product> {
+    const product = this.ormRepository.create({
+      name,
+      quantity,
+      minimumQuantity,
+      purchaseValue,
+      saleValue,
+      category_id: category.id,
+      user_id: user.id,
+    });
 
     await this.ormRepository.save(product);
 
@@ -20,12 +35,6 @@ class ProductRepository {
   }
 
   public async delete(id: string): Promise<void> {
-    const product = await this.ormRepository.findOne(id);
-
-    if (!product) {
-      throw new AppError('This product does not exist');
-    }
-
     await this.ormRepository.delete(id);
   }
 

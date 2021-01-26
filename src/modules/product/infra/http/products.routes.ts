@@ -20,6 +20,8 @@ productsRouter.post('/', async (request, response) => {
     category,
   } = request.body;
 
+  const user_id = request.user.id;
+
   const createProduct = container.resolve(CreateProductServer);
 
   const product = await createProduct.execute({
@@ -28,6 +30,7 @@ productsRouter.post('/', async (request, response) => {
     minimumQuantity,
     purchaseValue,
     saleValue,
+    user_id,
     category,
   });
 

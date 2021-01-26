@@ -3,6 +3,7 @@ import AppError from '@shared/errors/AppError';
 
 import ICategoryRepository from '@modules/category/repositories/ICategoryRepository';
 import CreateCategoryService from '@modules/category/services/CreateCategoryService';
+import IUserRepository from '@modules/user/repositories/IUserRepository';
 import IProductRepository from '../repositories/IProductRepository';
 
 import Product from '../infra/typeorm/entities/Product';
@@ -14,6 +15,7 @@ interface IRequest {
   purchaseValue: number;
   saleValue: number;
   category: string;
+  user_id: string;
 }
 
 @injectable()
@@ -24,6 +26,9 @@ class CreateProductServer {
 
     @inject('CategoryRepository')
     private categoryRepository: ICategoryRepository,
+
+    @inject('UserRepository')
+    private userRepository: IUserRepository,
   ) {}
 
   public async execute({
@@ -33,7 +38,13 @@ class CreateProductServer {
     purchaseValue,
     saleValue,
     category,
+    user_id,
   }: IRequest): Promise<Product> {
+    const user = await this.userRepository.findById(user_id);
+
+    if (!user) {
+      throw new AppError('User authentication error');
+    }
     const checkProductExists = await this.productRepository.findByName(name);
 
     if (checkProductExists) {
@@ -55,6 +66,7 @@ class CreateProductServer {
       purchaseValue,
       saleValue,
       category: checkCategory,
+      user,
     };
 
     const product = await this.productRepository.create(newProduct);
