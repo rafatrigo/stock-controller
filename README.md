@@ -30,10 +30,10 @@ A simple way to control things like maximum and minimum quantity of products in 
 
 ### Users
 
-- [ ] Register a new user
-- [ ] Delete a user
-- [ ] Edit user
-- [ ] Authenticate user
+- [x] Register a new user
+- [x] Delete a user
+- [x] Edit user
+- [x] Authenticate user - token JWT
 - [ ] Password recovery
 
 
