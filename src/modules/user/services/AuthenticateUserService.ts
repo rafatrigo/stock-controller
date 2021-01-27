@@ -12,7 +12,7 @@ interface IRequest {
 }
 
 interface IResponse {
-  user: User;
+  userWithoutPassword: User;
   token: string;
 }
 
@@ -43,7 +43,11 @@ class AuthenticateUserService {
       expiresIn: expiredIn,
     });
 
-    return { user, token };
+    const userWithoutPassword = user;
+
+    userWithoutPassword.password = '***';
+
+    return { userWithoutPassword, token };
   }
 }
 

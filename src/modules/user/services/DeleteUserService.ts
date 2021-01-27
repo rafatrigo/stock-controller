@@ -9,11 +9,12 @@ class DeleteUserService {
     private userRepository: IUserRepository,
   ) {}
 
+  // still need to improve the logic (require password and thigs like that)
   public async execute(id: string): Promise<void> {
     const user = await this.userRepository.findById(id);
 
     if (!user) {
-      throw new AppError('This user does not exist');
+      throw new AppError('User not found');
     }
 
     await this.userRepository.delete(id);

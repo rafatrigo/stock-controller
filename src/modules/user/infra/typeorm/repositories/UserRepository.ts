@@ -40,6 +40,14 @@ class UserRepository {
 
     return user;
   }
+
+  public async listUserProducts(id: string): Promise<User | undefined> {
+    const user = await this.ormRepository.findOne(id, {
+      relations: ['product'],
+    });
+
+    return user;
+  }
 }
 
 export default UserRepository;

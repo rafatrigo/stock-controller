@@ -10,6 +10,7 @@ class UpdateUserService {
     private userRepository: IUserRepository,
   ) {}
 
+  // still need to improve the logic (require password and thigs like that)
   public async execute(user: User): Promise<User> {
     const exist = await this.userRepository.findById(user.id);
 
@@ -19,7 +20,11 @@ class UpdateUserService {
 
     const updatedUser = await this.userRepository.update(user);
 
-    return updatedUser;
+    const updatedUserWithoutPassword = updatedUser;
+
+    updatedUserWithoutPassword.password = '***';
+
+    return updatedUserWithoutPassword;
   }
 }
 

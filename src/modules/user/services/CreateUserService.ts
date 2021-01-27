@@ -31,7 +31,11 @@ class CreateUserService {
       password: hashedPassword,
     });
 
-    return newUser;
+    const userWithoutPassword = newUser;
+
+    userWithoutPassword.password = '***';
+
+    return userWithoutPassword;
   }
 }
 
