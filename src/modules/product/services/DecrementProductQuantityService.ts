@@ -28,6 +28,8 @@ class DecrementProductQuantityService {
 
     await this.productRepository.update(product);
 
+    delete product.user;
+
     return product;
   }
 }

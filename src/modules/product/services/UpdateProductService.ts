@@ -32,6 +32,8 @@ class UpdateProductService {
 
     const updatedProduct = await this.productRepository.update(product);
 
+    delete product.user;
+
     return updatedProduct;
   }
 }

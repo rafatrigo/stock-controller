@@ -41,7 +41,7 @@ class Product {
 
   @ManyToOne(() => User, user => user.product, { eager: true })
   @JoinColumn({ name: 'user_id' })
-  user: User;
+  user?: User;
 }
 
 export default Product;

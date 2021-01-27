@@ -10,7 +10,15 @@ class ListProductsServer {
   ) {}
 
   public async execute(): Promise<Product[]> {
-    const products = this.productRepository.list();
+    const products = await this.productRepository.list();
+
+    products.map(product => {
+      const productWithoutUser = product;
+
+      delete productWithoutUser.user;
+
+      return productWithoutUser;
+    });
 
     return products;
   }
